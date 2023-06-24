@@ -19,6 +19,15 @@ function App() {
   const updateItem = (params) => {
     setNewItem(params.target.value);
   }
+
+  const clearAll = (params) => {
+    addNewItems([]);
+  }
+
+  //delete a item for the list
+  const deleteThis = (params) => {
+    addNewItems(items.filter((item,index)=>index!==params));
+  }
   
 
   return (
@@ -30,7 +39,10 @@ function App() {
         </div>
 
         <div>
-          <DisplayText items={items}/>
+          <DisplayText items={items} deleteThis={deleteThis}/>
+        </div>
+        <div className='d-flex justify-content-center'>
+          <button type="button" className="btn btn-warning col-2" onClick={clearAll}>Clear All item</button>
         </div>
       </div>
     </>
